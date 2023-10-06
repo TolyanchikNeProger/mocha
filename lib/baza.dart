@@ -4,7 +4,7 @@ import 'package:intl/intl.dart';
 class Baza {
   final int? id;
   final String text;
-  final DateTime date;
+  final String date;
   final String timeH;
   final String timeM;
 
@@ -33,6 +33,22 @@ class Baza {
       date: map['date'],
       timeH: map['timeH'],
       timeM: map['timeM'],
+    );
+  }
+  Baza copyWith({
+    int? id,
+    String? text,
+    String? timeH,
+    String? timeM,
+    String? date,
+    int? number,
+  }) {
+    return Baza(
+      id: id ?? this.id,
+      text: text ?? this.text,
+      timeH: timeH ?? this.timeH,
+      timeM: timeM ?? this.timeM,
+      date: date ?? this.date,
     );
   }
 }
