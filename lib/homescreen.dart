@@ -23,15 +23,32 @@ class _MyHomePageState extends State<MyHomePage> {
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         title: const Text("Ваши заметки"),
       ),
-      body: Column(
-        children: [
-          Expanded(
-            child: ListView.builder(
-              itemBuilder: (context, index) {},
-            ),
-          ),
-        ],
-      ),
+      body: Consumer<MyDataProvider>(builder: (context, provider, child) {
+        final dataList = provider.dataList.toList();
+        return Column(
+          children: [
+            Expanded(
+                child: ListView.builder(
+              itemCount: dataList.length,
+              itemBuilder: (context, index) {
+                final data = dataList[index];
+                return Card(
+                  child: ListTile(
+                    title: Text(data.text),
+                    subtitle: Row(
+                      children: [
+                        Text(data.date),
+                        Text(data.timeH),
+                        Text(data.timeM),
+                      ],
+                    ),
+                  ),
+                );
+              },
+            ))
+          ],
+        );
+      }),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           Navigator.push(

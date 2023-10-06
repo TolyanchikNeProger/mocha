@@ -22,6 +22,14 @@ class _MyWidgetState extends State<MyWidget> {
   final _textController = TextEditingController();
 
   @override
+  void dispose() {
+    _textController.dispose();
+    _timeControllerHo.dispose();
+    _dateController.dispose();
+    _timeControllerMi.dispose();
+    super.dispose();
+  }
+
   void _submitForm() {
     final text = _textController.text.trim();
     final timeH = _textController.text.trim();
@@ -37,6 +45,7 @@ class _MyWidgetState extends State<MyWidget> {
     Navigator.pop(context);
   }
 
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -50,10 +59,11 @@ class _MyWidgetState extends State<MyWidget> {
               height: 50,
               width: 250,
               child: TextField(
+                textInputAction: TextInputAction.next,
                 controller: _dateController,
                 decoration:
                     const InputDecoration(hintText: "Дата (дд.мм.гггг)"),
-                maxLength: 8,
+                maxLength: 10,
                 keyboardType: TextInputType.datetime,
               ),
             ),
@@ -65,6 +75,7 @@ class _MyWidgetState extends State<MyWidget> {
                   height: 50,
                   width: 125,
                   child: TextField(
+                    textInputAction: TextInputAction.next,
                     maxLength: 2,
                     keyboardType: TextInputType.datetime,
                     controller: _timeControllerHo,
@@ -75,6 +86,7 @@ class _MyWidgetState extends State<MyWidget> {
                   height: 50,
                   width: 125,
                   child: TextField(
+                    textInputAction: TextInputAction.next,
                     maxLength: 2,
                     keyboardType: TextInputType.datetime,
                     controller: _timeControllerMi,
