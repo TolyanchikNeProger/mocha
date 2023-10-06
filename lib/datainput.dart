@@ -1,9 +1,11 @@
 // ignore_for_file: unnecessary_string_interpolations, prefer_const_constructors, unused_import
 
+import 'package:eblya_s_mujchinami/baza.dart';
 import 'package:eblya_s_mujchinami/main.dart';
+import 'package:eblya_s_mujchinami/provuder228.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-
+import 'package:provider/provider.dart';
 import 'homescreen.dart';
 
 class MyWidget extends StatefulWidget {
@@ -18,26 +20,23 @@ class _MyWidgetState extends State<MyWidget> {
   final _timeControllerHo = TextEditingController();
   final _timeControllerMi = TextEditingController();
   final _textController = TextEditingController();
-  DateTime _segodnyaData = DateTime.now();
-
-  void _selectDate(BuildContext context) async {
-    final DateTime? picked = await showDatePicker(
-      context: context,
-      initialDate: _segodnyaData,
-      firstDate: DateTime(2023),
-      lastDate: DateTime(2025),
-    );
-    if (picked != null && picked != _segodnyaData) {
-      setState(
-        () {
-          _segodnyaData = picked;
-          _dateController.text = DateFormat('yyyy-MM-dd').format(_segodnyaData);
-        },
-      );
-    }
-  }
 
   @override
+  void _submitForm() {
+    final text = _textController.text.trim();
+    final timeH = _textController.text.trim();
+    final tImeM = _textController.text.trim();
+    final date = _textController.text.trim();
+    final data = Baza(
+      text: text,
+      timeH: timeH,
+      timeM: tImeM,
+      date: date,
+    );
+    Provider.of<MyDataProvider>(context, listen: false).addData(data);
+    Navigator.pop(context);
+  }
+
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -52,25 +51,32 @@ class _MyWidgetState extends State<MyWidget> {
               width: 250,
               child: TextField(
                 controller: _dateController,
-                decoration: const InputDecoration(hintText: "Дата..."),
-                onTap: () => _selectDate(context),
+                decoration:
+                    const InputDecoration(hintText: "Дата (дд.мм.гггг)"),
+                maxLength: 8,
+                keyboardType: TextInputType.datetime,
               ),
             ),
             const SizedBox(height: 10.0),
             Row(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 SizedBox(
                   height: 50,
-                  width: 100,
+                  width: 125,
                   child: TextField(
+                    maxLength: 2,
+                    keyboardType: TextInputType.datetime,
                     controller: _timeControllerHo,
                     decoration: const InputDecoration(hintText: "Часы..."),
                   ),
                 ),
                 SizedBox(
                   height: 50,
-                  width: 100,
+                  width: 125,
                   child: TextField(
+                    maxLength: 2,
+                    keyboardType: TextInputType.datetime,
                     controller: _timeControllerMi,
                     decoration: const InputDecoration(hintText: "Минуты..."),
                   ),
@@ -92,12 +98,7 @@ class _MyWidgetState extends State<MyWidget> {
             const SizedBox(height: 30.0),
             ElevatedButton(
               onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => MyHomePage(),
-                  ),
-                );
+                _submitForm();
               },
               child: const Text("Сохранить"),
             )

@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
 import 'baza.dart';
 import 'datahelper.dart';
@@ -10,8 +8,8 @@ class MyDataProvider extends ChangeNotifier {
   List get dataList => _dataList;
 
   // ! Получить товар из базы данных и обновить список на экране
-  void getData([Int? id]) async {
-    final dataList = await DatabaseHelper.instance.getData(id);
+  void getData([DateTime? selectedDate]) async {
+    final dataList = await DatabaseHelper.instance.getData(selectedDate);
     _dataList = dataList;
     notifyListeners();
   }
