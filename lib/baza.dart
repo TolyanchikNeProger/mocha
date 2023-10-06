@@ -20,7 +20,7 @@ class Baza {
     return {
       'id': id,
       'text': text,
-      'date': DateFormat('yyyy-MM-dd').format(date),
+      'date': text,
       'timeM': text,
       'timeH': text,
     };
@@ -30,7 +30,7 @@ class Baza {
     return Baza(
       id: map['id'],
       text: map['text'],
-      date: DateTime.parse(map['date']),
+      date: map['date'],
       timeH: map['timeH'],
       timeM: map['timeM'],
     );
