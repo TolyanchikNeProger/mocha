@@ -1,3 +1,5 @@
+// ignore_for_file: unused_import
+
 import 'dart:ffi';
 
 import 'baza.dart';
@@ -41,10 +43,6 @@ class DatabaseHelper {
     final db = await instance.db;
     final List<Map<String, dynamic>> maps = await db.query(
       instance.table,
-      //   where: selectedDate != null ? 'date LIKE ?' : null,
-      //   whereArgs: selectedDate != null
-      //       ? ['${DateFormat('yyyy-MM-dd').format(selectedDate)}%']
-      //       : null,
     );
 
     return List.generate(maps.length, (i) {
