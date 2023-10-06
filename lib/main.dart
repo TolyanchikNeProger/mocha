@@ -5,6 +5,8 @@ import 'package:eblya_s_mujchinami/provuder228.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import 'homescreen.dart';
+
 void main() {
   runApp(const MyApp());
 }
@@ -22,12 +24,7 @@ class MyApp extends StatelessWidget {
           colorScheme: ColorScheme.fromSeed(
               seedColor: const Color.fromARGB(255, 44, 221, 153)),
         ),
-        home: MyHomePage(
-            date: "",
-            timeH: "",
-            timeM: "",
-            text: "",
-            col1: Color.fromARGB(255, 24, 184, 96)),
+        home: MyHomePage(),
       ),
     );
   }

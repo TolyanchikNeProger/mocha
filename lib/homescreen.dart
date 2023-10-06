@@ -6,18 +6,8 @@ import 'package:provider/provider.dart';
 class MyHomePage extends StatefulWidget {
   const MyHomePage({
     super.key,
-    required this.date,
-    required this.timeH,
-    required this.timeM,
-    required this.text,
-    required this.col1,
   });
 
-  final String date;
-  final String timeH;
-  final String timeM;
-  final String text;
-  final Color col1;
   @override
   State<MyHomePage> createState() => _MyHomePageState();
 }

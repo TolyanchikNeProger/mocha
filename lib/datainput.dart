@@ -1,5 +1,6 @@
 // ignore_for_file: unnecessary_string_interpolations
 
+import 'package:eblya_s_mujchinami/homescreen.dart';
 import 'package:eblya_s_mujchinami/main.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -13,7 +14,7 @@ class _MyWidgetState extends State<MyWidget> {
   final _dateController = TextEditingController();
   final _timeControllerHo = TextEditingController();
   final _timeControllerMi = TextEditingController();
-  final _TextController = TextEditingController();
+  final _textController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -68,7 +69,7 @@ class _MyWidgetState extends State<MyWidget> {
             height: 50,
             width: 250,
             child: TextField(
-              controller: _TextController,
+              controller: _textController,
               keyboardType: TextInputType.text,
               decoration: const InputDecoration(hintText: "Текст заметки..."),
               maxLength: 100,
@@ -79,14 +80,11 @@ class _MyWidgetState extends State<MyWidget> {
           ElevatedButton(
             onPressed: () {
               Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => MyHomePage(
-                          date: _dateController.text,
-                          timeH: _timeControllerHo.text,
-                          timeM: _timeControllerMi.text,
-                          text: _TextController.text,
-                          col1: const Color.fromARGB(255, 29, 226, 118))));
+                context,
+                MaterialPageRoute(
+                  builder: (context) => MyHomePage(),
+                ),
+              );
             },
             child: const Text("Сохранить"),
           )
