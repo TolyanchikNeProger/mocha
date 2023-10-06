@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'baza.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:intl/intl.dart';
@@ -35,7 +37,7 @@ class DatabaseHelper {
     return await db.insert(instance.table, data.toMap());
   }
 
-  Future<List<Baza>> getData([DateTime? selectedDate]) async {
+  Future<List<Baza>> getData([Int? id]) async {
     final db = await instance.db;
     final List<Map<String, dynamic>> maps = await db.query(
       instance.table,

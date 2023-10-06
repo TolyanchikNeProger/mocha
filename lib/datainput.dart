@@ -1,4 +1,4 @@
-// ignore_for_file: unnecessary_string_interpolations
+// ignore_for_file: unnecessary_string_interpolations, unused_import
 
 import 'package:eblya_s_mujchinami/homescreen.dart';
 import 'package:eblya_s_mujchinami/main.dart';
