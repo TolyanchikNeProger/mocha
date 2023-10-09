@@ -21,4 +21,9 @@ class MyDataProvider extends ChangeNotifier {
     _dataList.add(newData);
     notifyListeners();
   }
+
+  void deleteData(int id) async {
+    await DatabaseHelper.instance.deleteData(id);
+    getData();
+  }
 }

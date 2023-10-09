@@ -1,3 +1,5 @@
+// ignore_for_file: unused_import
+
 import 'baza.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:intl/intl.dart';
@@ -48,5 +50,10 @@ class DatabaseHelper {
     return List.generate(maps.length, (i) {
       return Baza.fromMap(maps[i]);
     });
+  }
+
+  Future<int> deleteData(int id) async {
+    final db = await instance.db;
+    return await db.delete(instance.table, where: 'id LIKE ?', whereArgs: [id]);
   }
 }

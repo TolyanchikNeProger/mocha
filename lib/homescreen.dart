@@ -35,13 +35,20 @@ class _MyHomePageState extends State<MyHomePage> {
                 return Card(
                   child: ListTile(
                     title: Text(data.text),
-                    // subtitle: Row(
-                    //   children: [
-                    //     Text(data.date),
-                    //     Text(data.timeH),
-                    //     Text(data.timeM),
-                    //   ],
-                    // ),
+                    trailing: IconButton(
+                      icon: const Icon(Icons.delete_forever_rounded),
+                      onPressed: () {
+                        Provider.of<MyDataProvider>(context, listen: false)
+                            .deleteData(data.id);
+                      },
+                    ),
+                    subtitle: Row(
+                      children: [
+                        Text(data.date),
+                        Text(data.timeH),
+                        Text(data.timeM),
+                      ],
+                    ),
                   ),
                 );
               },
