@@ -35,13 +35,13 @@ class _MyHomePageState extends State<MyHomePage> {
                 return Card(
                   child: ListTile(
                     title: Text(data.text),
-                    subtitle: Row(
-                      children: [
-                        Text(data.date),
-                        Text(data.timeH),
-                        Text(data.timeM),
-                      ],
-                    ),
+                    // subtitle: Row(
+                    //   children: [
+                    //     Text(data.date),
+                    //     Text(data.timeH),
+                    //     Text(data.timeM),
+                    //   ],
+                    // ),
                   ),
                 );
               },
