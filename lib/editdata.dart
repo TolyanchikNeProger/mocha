@@ -8,14 +8,15 @@ import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'homescreen.dart';
 
-class MyWidget extends StatefulWidget {
-  const MyWidget({super.key});
+class EditDataForm extends StatefulWidget {
+  final Baza data;
+  const EditDataForm({Key? key, required this.data}) : super(key: key);
 
   @override
-  State<MyWidget> createState() => _MyWidgetState();
+  _EditDataFormState createState() => _EditDataFormState();
 }
 
-class _MyWidgetState extends State<MyWidget> {
+class _EditDataFormState extends State<EditDataForm> {
   final _dateController = TextEditingController();
   final _timeControllerHo = TextEditingController();
   final _timeControllerMi = TextEditingController();
@@ -35,13 +36,15 @@ class _MyWidgetState extends State<MyWidget> {
     final timeH = _textController.text.trim();
     final tImeM = _textController.text.trim();
     final date = _textController.text.trim();
-    final data = Baza(
-      text: text,
-      timeH: timeH,
-      timeM: tImeM,
-      date: date,
-    );
-    Provider.of<MyDataProvider>(context, listen: false).addData(data);
+    final dataNew = Baza(
+            text: text,
+            timeH: timeH,
+            timeM: tImeM,
+            date: date,
+            id: widget.data.id)
+        .toMap();
+    Provider.of<MyDataProvider>(context, listen: false)
+        .editData(widget.data.id ?? 0, dataNew);
     Navigator.pop(context);
   }
 
@@ -50,7 +53,7 @@ class _MyWidgetState extends State<MyWidget> {
     return Scaffold(
       appBar: AppBar(
           backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-          title: const Text("Создание заметки")),
+          title: const Text("Редактирование заметки")),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -61,8 +64,9 @@ class _MyWidgetState extends State<MyWidget> {
               child: TextField(
                 textInputAction: TextInputAction.next,
                 controller: _dateController,
-                decoration:
-                    const InputDecoration(hintText: "Дата (дд.мм.гггг)"),
+                decoration: InputDecoration(
+                  labelText: widget.data.date,
+                ),
                 maxLength: 10,
                 keyboardType: TextInputType.datetime,
               ),
@@ -79,7 +83,9 @@ class _MyWidgetState extends State<MyWidget> {
                     maxLength: 2,
                     keyboardType: TextInputType.datetime,
                     controller: _timeControllerHo,
-                    decoration: const InputDecoration(hintText: "Часы..."),
+                    decoration: InputDecoration(
+                      labelText: widget.data.date.toString(),
+                    ),
                   ),
                 ),
                 SizedBox(
@@ -90,7 +96,9 @@ class _MyWidgetState extends State<MyWidget> {
                     maxLength: 2,
                     keyboardType: TextInputType.datetime,
                     controller: _timeControllerMi,
-                    decoration: const InputDecoration(hintText: "Минуты..."),
+                    decoration: InputDecoration(
+                      labelText: widget.data.timeM,
+                    ),
                   ),
                 ),
               ],
@@ -102,7 +110,9 @@ class _MyWidgetState extends State<MyWidget> {
               child: TextField(
                 controller: _textController,
                 keyboardType: TextInputType.text,
-                decoration: const InputDecoration(hintText: "Текст заметки..."),
+                decoration: InputDecoration(
+                  labelText: widget.data.text,
+                ),
                 maxLength: 100,
                 textInputAction: TextInputAction.done,
               ),

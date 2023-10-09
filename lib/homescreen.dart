@@ -33,6 +33,7 @@ class _MyHomePageState extends State<MyHomePage> {
               itemBuilder: (context, index) {
                 final data = dataList[index];
                 return Card(
+                  color: const Color.fromARGB(255, 22, 134, 73),
                   child: ListTile(
                     title: Text(data.text),
                     trailing: IconButton(

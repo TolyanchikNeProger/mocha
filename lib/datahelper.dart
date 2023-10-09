@@ -41,10 +41,6 @@ class DatabaseHelper {
     final db = await instance.db;
     final List<Map<String, dynamic>> maps = await db.query(
       instance.table,
-      //   where: selectedDate != null ? 'date LIKE ?' : null,
-      //   whereArgs: selectedDate != null
-      //       ? ['${DateFormat('yyyy-MM-dd').format(selectedDate)}%']
-      //       : null,
     );
 
     return List.generate(maps.length, (i) {
@@ -55,5 +51,17 @@ class DatabaseHelper {
   Future<int> deleteData(int id) async {
     final db = await instance.db;
     return await db.delete(instance.table, where: 'id LIKE ?', whereArgs: [id]);
+  }
+
+  Future<void> editData(int id, Map<String, dynamic> newData) async {
+    final db = await instance.db;
+    try {
+      // print(id);
+      // print(newData);
+      await db
+          .update(instance.table, newData, where: 'id LIKE ?', whereArgs: [id]);
+    } catch (e) {
+      print('ОШИБКА!! + ${e}');
+    }
   }
 }
