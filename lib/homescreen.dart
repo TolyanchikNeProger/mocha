@@ -1,6 +1,7 @@
 // ignore_for_file: unused_import
 
 import 'package:eblya_s_mujchinami/datainput.dart';
+import 'package:eblya_s_mujchinami/editdata.dart';
 import 'package:eblya_s_mujchinami/provuder228.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -33,9 +34,16 @@ class _MyHomePageState extends State<MyHomePage> {
               itemBuilder: (context, index) {
                 final data = dataList[index];
                 return Card(
-                  color: const Color.fromARGB(255, 22, 134, 73),
+                  color: const Color.fromARGB(255, 65, 255, 151),
                   child: ListTile(
                     title: Text(data.text),
+                    leading: IconButton(
+                      onPressed: () => Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => EditDataForm(data: data))),
+                      icon: const Icon(Icons.edit),
+                    ),
                     trailing: IconButton(
                       icon: const Icon(Icons.delete_forever_rounded),
                       onPressed: () {
