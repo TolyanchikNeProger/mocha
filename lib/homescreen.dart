@@ -36,7 +36,16 @@ class _MyHomePageState extends State<MyHomePage> {
                 return Card(
                   color: const Color.fromARGB(255, 65, 255, 151),
                   child: ListTile(
-                    title: Text(data.text),
+                    title: Row(
+                      children: [
+                        const Text("Дата:"),
+                        Text(data.date),
+                        const Text(" Время: "),
+                        Text(data.timeH),
+                        const Text(":"),
+                        Text(data.timeM),
+                      ],
+                    ),
                     leading: IconButton(
                       onPressed: () => Navigator.push(
                           context,
@@ -51,13 +60,7 @@ class _MyHomePageState extends State<MyHomePage> {
                             .deleteData(data.id);
                       },
                     ),
-                    subtitle: Row(
-                      children: [
-                        Text(data.date),
-                        Text(data.timeH),
-                        Text(data.timeM),
-                      ],
-                    ),
+                    subtitle: Text(data.text),
                   ),
                 );
               },

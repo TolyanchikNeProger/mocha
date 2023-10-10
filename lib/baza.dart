@@ -22,9 +22,9 @@ class Baza {
     return {
       'id': id,
       'text': text,
-      'date': text,
-      'timeM': text,
-      'timeH': text,
+      'date': date,
+      'timeM': timeM,
+      'timeH': timeH,
     };
   }
 

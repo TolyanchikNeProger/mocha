@@ -32,9 +32,9 @@ class _MyWidgetState extends State<MyWidget> {
 
   void _submitForm() {
     final text = _textController.text.trim();
-    final timeH = _textController.text.trim();
-    final tImeM = _textController.text.trim();
-    final date = _textController.text.trim();
+    final timeH = _timeControllerHo.text.trim();
+    final tImeM = _timeControllerMi.text.trim();
+    final date = _dateController.text.trim();
     final data = Baza(
       text: text,
       timeH: timeH,

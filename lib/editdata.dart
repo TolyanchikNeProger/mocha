@@ -33,9 +33,9 @@ class _EditDataFormState extends State<EditDataForm> {
 
   void _submitForm() {
     final text = _textController.text.trim();
-    final timeH = _textController.text.trim();
-    final tImeM = _textController.text.trim();
-    final date = _textController.text.trim();
+    final timeH = _timeControllerHo.text.trim();
+    final tImeM = _timeControllerMi.text.trim();
+    final date = _dateController.text.trim();
     final dataNew = Baza(
             text: text,
             timeH: timeH,
@@ -65,7 +65,7 @@ class _EditDataFormState extends State<EditDataForm> {
                 textInputAction: TextInputAction.next,
                 controller: _dateController,
                 decoration: InputDecoration(
-                  labelText: widget.data.date,
+                  hintText: widget.data.date,
                 ),
                 maxLength: 10,
                 keyboardType: TextInputType.datetime,
@@ -84,7 +84,7 @@ class _EditDataFormState extends State<EditDataForm> {
                     keyboardType: TextInputType.datetime,
                     controller: _timeControllerHo,
                     decoration: InputDecoration(
-                      labelText: widget.data.date.toString(),
+                      hintText: widget.data.timeH,
                     ),
                   ),
                 ),
@@ -97,7 +97,7 @@ class _EditDataFormState extends State<EditDataForm> {
                     keyboardType: TextInputType.datetime,
                     controller: _timeControllerMi,
                     decoration: InputDecoration(
-                      labelText: widget.data.timeM,
+                      hintText: widget.data.timeM,
                     ),
                   ),
                 ),
@@ -111,7 +111,7 @@ class _EditDataFormState extends State<EditDataForm> {
                 controller: _textController,
                 keyboardType: TextInputType.text,
                 decoration: InputDecoration(
-                  labelText: widget.data.text,
+                  hintText: widget.data.text,
                 ),
                 maxLength: 100,
                 textInputAction: TextInputAction.done,
